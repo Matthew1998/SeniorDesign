@@ -20,15 +20,15 @@ class ObjectDetector(object):
     def prepareDetection(self):
         with self.detectionGraph.as_default():
             # Extract image tensor
-            self.image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+            self.image_tensor = self.detectionGraph.get_tensor_by_name('image_tensor:0')
             # Extract detection boxes
-            self.boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+            self.boxes = self.detectionGraph.get_tensor_by_name('detection_boxes:0')
             # Extract detection scores
-            self.scores = detection_graph.get_tensor_by_name('detection_scores:0')
+            self.scores = self.detectionGraph.get_tensor_by_name('detection_scores:0')
             # Extract detection classes
-            self.classes = detection_graph.get_tensor_by_name('detection_classes:0')
+            self.classes = self.detectionGraph.get_tensor_by_name('detection_classes:0')
             # Extract number of detections
-            self.num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+            self.num_detections = self.detectionGraph.get_tensor_by_name('num_detections:0')
 
     def detectObject(self):
         with self.detectionGraph.as_default():
@@ -42,9 +42,21 @@ class ObjectDetector(object):
                     [self.boxes, self.scores, self.classes, self.num_detections],
                     feed_dict={self.image_tensor: image_np_expanded})
 
+    def getBoxes(self):
+        return self.boxes
+
+    def getScores(self):
+        return self.scores
+
+    def getClasses(self):
+        return self.classes
+
+    def getNumDetections(self):
+        return self.num_detections
 
 
 
-Obj = ObjectDetector()
+Obj = ObjectDetector('../models/lugnut/')
 
 
+print("Done!")
