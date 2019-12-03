@@ -1,12 +1,16 @@
 # This file defines the Object Dector classes and its sub-classes
 import tensorflow as tf
 
+
 class ObjectDetector(object):
     def __init__(self, model_path = ""):
         self.detectionGraph = self.loadModel(model_path + 'frozen_inference_graph.pb')
         self.prepareDetection()
 
-
+    # loadModel - Goes to the described path and then loads the model found there
+    #
+    # @params:	path - path to graph
+    #
     def loadModel(self, path):
         detectionGraph = tf.Graph()
         with detectionGraph.as_default():
@@ -17,6 +21,8 @@ class ObjectDetector(object):
                 tf.import_graph_def(od_graph_def, name='')
         return detectionGraph
 
+    # prepareDetection - Extracts the necessary infromation from the model found from loadModel
+    # 					 and then stores them in local variables
     def prepareDetection(self):
         with self.detectionGraph.as_default():
             # Extract image tensor
@@ -30,6 +36,8 @@ class ObjectDetector(object):
             # Extract number of detections
             self.num_detections = self.detectionGraph.get_tensor_by_name('num_detections:0')
 
+
+    # detectObject - This is the function that actually 
     def detectObject(self):
         with self.detectionGraph.as_default():
             with tf.compat.v1.Session(graph=self.detectionGraph) as sess:
@@ -54,9 +62,3 @@ class ObjectDetector(object):
     def getNumDetections(self):
         return self.num_detections
 
-
-
-Obj = ObjectDetector('../models/lugnut/')
-
-
-print("Done!")
