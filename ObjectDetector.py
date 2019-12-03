@@ -7,6 +7,7 @@ class ObjectDetector(object):
         self.detectionGraph = self.loadModel(model_path + 'frozen_inference_graph.pb')
         self.prepareDetection()
 
+
     # loadModel - Goes to the described path and then loads the model found there
     #
     # @params:	path - path to graph
@@ -20,6 +21,7 @@ class ObjectDetector(object):
                 od_graph_def.ParseFromString(serialized_graph)
                 tf.import_graph_def(od_graph_def, name='')
         return detectionGraph
+
 
     # prepareDetection - Extracts the necessary infromation from the model found from loadModel
     # 					 and then stores them in local variables
@@ -37,8 +39,11 @@ class ObjectDetector(object):
             self.num_detections = self.detectionGraph.get_tensor_by_name('num_detections:0')
 
 
-    # detectObject - This is the function that actually 
-    def detectObject(self):
+    # detectObject - This is the function that actually looks at the image and then uses the loaded model
+    #				 to determine whether any of the object are in the image
+    #
+    # @params:	imgPath - This is the path to the image for which you want to detect
+    def detectObject(self, imgPath):
         with self.detectionGraph.as_default():
             with tf.compat.v1.Session(graph=self.detectionGraph) as sess:
                 # Read frame
@@ -50,14 +55,18 @@ class ObjectDetector(object):
                     [self.boxes, self.scores, self.classes, self.num_detections],
                     feed_dict={self.image_tensor: image_np_expanded})
 
+
     def getBoxes(self):
         return self.boxes
+
 
     def getScores(self):
         return self.scores
 
+
     def getClasses(self):
         return self.classes
+
 
     def getNumDetections(self):
         return self.num_detections
