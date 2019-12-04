@@ -1,26 +1,43 @@
 from interpretImage import interpretImage
-from detectLugNuts import detectLugNuts
-from getImage import Image
+from ObjectDetector import ObjectDetector
+#from getImage import Image
 import turtle
+from PIL import Image
 
 #create objects
-pattern = detectLugNuts()
+objectDetector = ObjectDetector('models/lugnut/')
 interpret = interpretImage()
-pic = Image()
+#pic = Image()
+
+imagePath = "IMG_1414.jpg"
+imageGIF = imagePath.replace('.jpg', '.gif')
 
 #set up turtle perameters
 wn = turtle.Screen()
-wn.bgcolor("blue")
+wn.setup(600, 450)
+bg = Image.open(imagePath).convert('RGB').rotate(180).save(imageGIF)
+wn.bgpic(imageGIF)
+wn.update()
 wn.title("Polygon")
+
 turt = turtle.Turtle()
-turtle.screensize(800,600)
 turt.penup()
 turt.shape("turtle")
+turt.pencolor("yellow")
 
-pic.getImage()
+#pic.getImage('/home/seniordesign/Desktop/picture.jpg')
+
+objectDetector.detectObject('lugnutDetection/images/IMG_1414.jpg')
+objectDetector.filterDetections(0.5)
+
 
 #get the bolt loacations and plot them
-l = pattern.getPoints(5, True)
+small_l = objectDetector.getBoxCenters()
+l  = []
+for point in small_l:
+	newp = ((point[0]-0.5)*600, (0.5-point[1])*450)
+	l.append(newp)
+
 for point in l:
     turt.goto(point[0], point[1])
     turt.dot()
@@ -45,7 +62,7 @@ turt.dot()
 #find the offset angle of the wheel
 angle = interpret.getAngleOffset(normalizedPoints)
 
-turt.goto(-100, -100)
+turt.goto(-300, -225)
 
 #output information
 print("Position is: ")
