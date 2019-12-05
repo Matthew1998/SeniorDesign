@@ -17,12 +17,9 @@ def switchScreen(instance):
         sm.transition.direction = 'right'
     sm.current = instance.id
 
-class DemoCanvas(Widget):
-    def __init__(self, source="", id=""):
-        super(DemoCanvas, self).__init__()
-        self.source = source
-        self.id = id
-        print(self.source)
+def runDemo(instance):
+    sourcestr = "/home/seniordesign/Desktop/SeniorDesign/lugnutDetection/images/" + instance.id
+    
 
 class MenuScreen(Screen):
     def __init__(self, **kwargs):
@@ -78,20 +75,10 @@ class LabDemoScreen(Screen):
         images.sort()
         for file in images:
             btn = Button(text=file, id=file)
-            btn.bind(on_press=self.runDemo)
+            btn.bind(on_press=runDemo)
             self.imageGrid.add_widget(btn)
         return len(images)
 
-    def runDemo(self, instance):
-        for item in self.children:
-            if item.id == 'displayIMG':
-                self.remove_widget(item)
-        sourcestr = "/home/seniordesign/Desktop/SeniorDesign/lugnutDetection/images/" + instance.id
-        img = DemoCanvas(id='displayIMG', source=sourcestr)
-        img.pos_hint = {'x': 0.255, 'y': 0.110}
-        img.size_hint = (0.740, 0.885)
-        img.rect.source=sourcestr
-        self.add_widget(img)
 
 
 

@@ -1,11 +1,12 @@
 from interpretImage import interpretImage
-from ObjectDetector import ObjectDetector
+#from ObjectDetector import ObjectDetector
+from detectLugNuts import detectLugNuts
 #from getImage import Image
 import turtle
 from PIL import Image
 
 #create objects
-objectDetector = ObjectDetector('models/lugnut/')
+#objectDetector = ObjectDetector('models/lugnut/')
 interpret = interpretImage()
 #pic = Image()
 
@@ -15,8 +16,8 @@ imageGIF = imagePath.replace('.jpg', '.gif')
 #set up turtle perameters
 wn = turtle.Screen()
 wn.setup(600, 450)
-bg = Image.open(imagePath).convert('RGB').rotate(180).save(imageGIF)
-wn.bgpic(imageGIF)
+#bg = Image.open(imagePath).convert('RGB').rotate(180).save(imageGIF)
+#wn.bgpic(imageGIF)
 wn.update()
 wn.title("Polygon")
 
@@ -27,37 +28,39 @@ turt.pencolor("yellow")
 
 #pic.getImage('/home/seniordesign/Desktop/picture.jpg')
 
-objectDetector.detectObject('lugnutDetection/images/IMG_1414.jpg')
-objectDetector.filterDetections(0.5)
+#objectDetector.detectObject('lugnutDetection/images/IMG_1414.jpg')
+#objectDetector.filterDetections(0.5)
 
+d = detectLugNuts()
 
 #get the bolt loacations and plot them
-small_l = objectDetector.getBoxCenters()
+#small_l = objectDetector.getBoxCenters()
 l  = []
-for point in small_l:
-	newp = ((point[0]-0.5)*600, (0.5-point[1])*450)
-	l.append(newp)
+l = d.getPoints(5, True)
+# for point in small_l:
+# 	newp = ((point[0]-0.5)*600, (0.5-point[1])*450)
+# 	l.append(newp)
 
 for point in l:
     turt.goto(point[0], point[1])
-    turt.dot()
+    turt.dot(10)
 
 #fond and plot the center point
 avg = interpret.findAverage(l)
 turt.goto(avg[0], avg[1])
-turt.dot()
+turt.dot(10)
 
 #find the normalized points and plot them
 normalizedPoints = interpret.normalizePoints(l)
 turt.pencolor("red")
 for point in normalizedPoints:
     turt.goto(point[0], point[1])
-    turt.dot()
+    turt.dot(10)
 
 #plot the center of the normal polygon
 newAvg = interpret.findAverage(normalizedPoints)
 turt.goto(newAvg[0], newAvg[1])
-turt.dot()
+turt.dot(10)
 
 #find the offset angle of the wheel
 angle = interpret.getAngleOffset(normalizedPoints)
