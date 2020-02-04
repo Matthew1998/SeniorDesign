@@ -1,0 +1,117 @@
+This file will describe the process of setting up a blank Linux machine to create a custom
+inference graph for a user defined object. This will be useful because many of the online 
+tutorials are incomplete or out of date. Ideally this will be comprehensive and provide all
+the necessary files and instruction. FOLLOW INSTRUCTIONS EXACTLY
+
+BEFORE BEGINNING PLEASE READ THESE NOTES
+
+1. We want to use python 3.7 as much as possible because we don't want to begin out of date
+
+
+SECTION 1 - Prerequisites
+1. pip3 is necessary to install this run the following lines
+
+	sudo apt install python3-pip
+
+2. Check the installation by running the following command.
+
+	pip3 --version
+
+3. If no errors have shown then you have installed pip3. This will be used to install python
+   packages which will be necessary for running tensorflow.
+
+
+SECTION 2 - Beginning with TensorFlow:
+
+1. Install tensorflow by running the following command.
+
+	pip3 install tensorflow
+
+2. Navigate to your desired directory and clone the tensorflow github by running the following
+   command.
+
+	git clone 'https://github.com/tensorflow/models.git'
+
+3. This will clone the github repository into a folder called 'models'. Next we want to
+   install an image labelling tool called labelImg. Creative right? Run the following line
+   of code to clone the repository
+
+    git clone 'https://github.com/tzutalin/labelImg'
+
+4. Next, install some of the requirements by first navigating into the folder created
+
+	cd lblImg
+
+	sudo apt-get install pyqt5-dev-tools
+	sudo pip3 install -r requirements/requirements-linux-python3.txt
+	make qt5py3
+
+5. To confirm that this worked, run the following command
+
+	python3 labelImg.py
+
+
+6. Once this has been done, you are ready to begin creating your tensorflow model.
+   To keep things from getting confusing this tutorial will be using the following
+   directory structure.
+
+    /home -- This is the directory that you chose to start in. It can be anything, but for the
+    		 sake of this tutorial, we're going to pretend that we cloned into the directory as
+    		 shown. Taking note of this will be important, and any time that it is relevant will
+    		 be taken note of
+
+    /home/models     -- This is the directory into which we just cloned the tensorflow repository
+
+    /home/data	     -- This is the directory in which we will store any *.xml and *.record files
+
+    /home/data/train -- This is the directory in which we will store the *.xml files which will be
+    					used to train the model
+
+    /home/data/test  -- This is the directory in which we will store the *.xml files which will be 
+    					used to test the model while it is training.
+
+    /home/images     -- This is the directory in which we will store the images that will be used 
+    			        for training and testing our model
+
+    /home/training   -- This is the directory in which we will store the final trained model
+
+    /home/labelImg   -- This is the directory in which the image labelling tool will be stored. This
+    				    tool will be used to create the *.xml files
+
+
+SECTION 3 - Creating the *.xml files
+
+1. First acquire all of the images you wish to use for training and testing. Convert these images
+   into *.jpeg files and then store them in the /images directory.
+
+2. Navigate to the /labelImg directory and run labelImg.py by using the following command
+
+	python3 labelImg.py
+
+3. Next, open the image directory by pressing 'Open Directory' on the GUI
+
+4. Change the save directory to /home/data/train by clicking on 'Change Save Dir' 
+
+5. Next, check the box which says 'Use default label' and enter the desired label.
+
+6. Add labels by either clicking on 'Create Rectbox' or by pressing 'e' then 'w' on the keyboard
+
+7. Label the desired object in the image by clicking and dragging. The box should highlight the entirety
+   of the desired object
+
+8. Once all of the objects are highlighted click 'Save' to save the image
+
+9. Repeat steps 6-8 on each image you wish to be used to train the model
+
+10. Next, change the save directory to /home/data/test by clicking on 'Change Save Dir'
+
+11. Repeat steps 6-8 on each image you wish to be used to test the model
+
+*** NOTE *** USE THE VAST MAJORITY OF PICTURES TO TEST THE MODEL (~ 90%)
+
+
+SECTION 4 - Creating the *.record files
+
+1. 
+
+
