@@ -60,6 +60,9 @@ SECTION 2 - Beginning with TensorFlow:
     		 shown. Taking note of this will be important, and any time that it is relevant will
     		 be taken note of
 
+    /home/SeniorDesign -- This is the directory into which you will have cloned our senior design
+    					  repository
+
     /home/models     -- This is the directory into which we just cloned the tensorflow repository
 
     /home/data	     -- This is the directory in which we will store any *.xml and *.record files
@@ -112,6 +115,41 @@ SECTION 3 - Creating the *.xml files
 
 SECTION 4 - Creating the *.record files
 
-1. 
+1. Prior to creating the *.record files you must create a label map. Likely, each model will only be 
+   searching for one thing so the label map will be very simple.
+
+2. Create the file label_map.pbtxt in the directory /home/data. It will contain the following
+
+	item {
+	    id: 1
+	    name: '***NAME***'
+	}
+
+   ***NAME*** must be replaced with the label name that was used in SECTION 3, Step 5. IT MUST BE THE
+   SAME OR IT WILL NOT WORK
+
+3. Next, run the following command to create the train.record file
+
+	python3  /home/SeniorDesign/create_tfrecord.py 		\
+			--data_dir=/home/data --set=train			\
+			--output_path=/home/data/train.record		\
+			--label_map_path=/home/data/label_map.pbtxt
+
+4. Next, run the following command to create the test.record file
+
+	python3  /home/SeniorDesign/create_tfrecord.py 		\
+			--data_dir=/home/data --set=test			\
+			--output_path=/home/data/test.record		\
+			--label_map_path=/home/data/label_map.pbtxt
+
+5. After this, you have all of the materials necessary to begin the process creating the model!
+
+
+SECTION 5 - 
+
+
+
+
+
 
 
