@@ -135,11 +135,7 @@ SECTION 2 - Initiating docking sequence:
 
 
 
-python3 /home/pjh26/SeniorDesign/create_tfrecord.py \
-        --data_dir=/home/pjh26/data --set=test      \
-        --output_path=/home/pjh26/data/test.record  \
-        --image_directory=/home/pjh26/images        \
-        --label_map_path=/home/pjh26/data/label_map.pbtxt
-
+python3 object_detection/model_main.py 
+        --pipeline_config_path=/home/pjh26/models/research/object_detection/ssd_mobilenet_v1_coco_2018_01_28/pipeline.config --model_dir=/home/pjh26/training --num_train_steps=100 --sample_1_of_n_eval_examples=1
 
 
