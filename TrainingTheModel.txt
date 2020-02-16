@@ -1,0 +1,129 @@
+This file assumes that the steps of SettingUpCustomDetection.txt have been followed. This
+file will describe the process of taking the *.record files and the images and creating
+an inference graph using the Calvin University Supercomputer (borg)
+
+FOLLOW INSTRUCTIONS EXACTLY
+
+BEFORE BEGINNING PLEASE READ THESE NOTES
+
+1. We want to use python 3.7 as much as possible because we don't want to begin out of date
+
+
+
+SECTION 1 - Assimilating with the BORG
+
+1. First you want to connect to the borg
+
+2. Then you want to recreate the directory structure that was used in the previous tutorial
+   This structure looks similar but not exactly the same.
+
+
+   /home -- This is the directory that you chose to start in. It can be ANYTHING, but for the
+            sake of this tutorial, we're going to pretend that we cloned into the directory as
+            shown. Taking note of this will be important, and any time that it is relevant will
+            be taken note of
+
+   /home/SeniorDesign -- This is the directory into which you will have cloned our senior design
+                         repository
+
+   /home/models     -- This is the directory into which we just cloned the tensorflow repository
+
+   /home/data       -- This is the directory in which we will store any *.xml and *.record files
+
+   /home/data/train -- This is the directory in which we will store the *.xml files which will be
+                       used to train the model
+
+   /home/data/test  -- This is the directory in which we will store the *.xml files which will be 
+                       used to test the model while it is training.
+
+   /home/images     -- This is the directory in which we will store the images that will be used 
+                       for training and testing our model
+
+   /home/training   -- This is the directory in which we will store the final trained model
+
+   Note that there is no lblImage directory as this tool will no longer be necessary.
+
+3. Next, while in the borg create a python virtual environment using the following command
+
+  python3 -m venv ***YOUR VIRTUAL ENVIRONMENT NAME***
+
+4. Once the virtual environment is created we have to source it and begin installing the necessary
+   packages. First source it using the following command.
+
+  source ***YOUR VIRTUAL ENVIRONMENT NAME***/bin/activate
+
+5. This will open up the virtual environment and will keep all of our downloaded packages contained.
+   Using the following commands download the necessary python packages
+
+  pip3 install tensorflow-gpu
+  pip3 install Cython
+  pip3 install contextlib2
+  pip3 install pillow
+  pip3 install lxml
+  pip3 install jupyter
+  pip3 install matplotlib
+
+6. Next, the final package has to be installed manually. Begin by navigating to the main directory
+   and run the following command.
+
+  wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
+
+   This will download a zip file which must be unzipped using the following command
+
+  unzip protobuf.zip
+
+7. Finally, some files have to be compiled using this newly downloaded package. Navigate to the following
+   directory.
+
+  /home/models/research/
+
+   And then run the following command
+
+  /home/bin/protoc object_detection/protos/*.proto --python_out=.
+
+8. Next, some tensorflow libraries have to be appended to PYTHONPATH. This can be done by navigating to the
+   home directory and then editing the .bashrc file by running the following command.
+
+  nano .bashrc
+
+   Then add the following line to the bottom of the file.
+
+  export PYTHONPATH=$PYTHONPATH:/home/models/research:/home/models/research/slim
+
+9. The final step is to test the installation by first navigating to the /home/models/research folder.
+   Then run the following command
+
+  python3 object_detection/builders/model_builder_test.py
+
+
+SECTION 2 - Initiating docking sequence:
+
+1. To begin, the proper checkpoint model has to be downloaded and configured. To download the 
+   checkpoint that we'll be using run following command while in the object_detection directory
+
+  wget -O ssd_mobilenet_v1_coco.tar.gz http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2018_01_28.tar.gz
+
+   Then unzip the file using the following command.
+
+  tar -xzvf ssd_mobilenet_v1_coco.tar.gz
+
+2. Next, navigate into the folder that was just created and you should notice a file named pipeline.config.
+   Open this file using the following command
+
+  nano pipeline.config
+
+3. We will be changing a number of lines in the file so the necessary changes will just be listed out like so
+
+  <Old line> ==> <New Line>
+
+  num_classes: 90 ==> num_classes: 1
+
+  
+
+
+
+
+
+
+
+
