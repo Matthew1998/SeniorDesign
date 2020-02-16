@@ -7,6 +7,10 @@ BEFORE BEGINNING PLEASE READ THESE NOTES
 
 1. We want to use python 3.7 as much as possible because we don't want to begin out of date
 
+2. This link to github describes the whole process. I've customized some things for our senior
+   design purposes but if anything is not clear FOLLOW THIS LINK!!
+
+  https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_locally.md
 
 SECTION 1 - Prerequisites
 1. pip3 is necessary to install this run the following lines
@@ -143,13 +147,3 @@ SECTION 4 - Creating the *.record files
 			--label_map_path=/home/data/label_map.pbtxt
 
 5. After this, you have all of the materials necessary to begin the process creating the model!
-
-
-SECTION 5 - 
-
-
-
-
-
-
-

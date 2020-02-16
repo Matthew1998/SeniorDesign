@@ -90,7 +90,18 @@ SECTION 1 - Assimilating with the BORG
 
   export PYTHONPATH=$PYTHONPATH:/home/models/research:/home/models/research/slim
 
-9. The final step is to test the installation by first navigating to the /home/models/research folder.
+9. Now, we're going to get one more package, the coco api something or another. Navigate to the home directory
+   and then run the following command.
+
+  git clone https://github.com/cocodataset/cocoapi.git'
+
+  cd cocoapi/PythonAPI
+
+  make
+
+  cp -r pycocotools /home/models/research/
+
+10. The final step is to test the installation by first navigating to the /home/models/research folder.
    Then run the following command
 
   python3 object_detection/builders/model_builder_test.py
@@ -114,16 +125,21 @@ SECTION 2 - Initiating docking sequence:
 
 3. We will be changing a number of lines in the file so the necessary changes will just be listed out like so
 
-  <Old line> ==> <New Line>
+  num_classes: 1
+  fine_tune_checkpoint: "/home/pjh26/models/research/object_detection/ssd_mobilenet_v1_coco_2018_01_28/model.ckpt
+  label_map_path: "/home/pjh26/data/label_map.pbtxt"
+  input_path: "/home/pjh26/data/train.record"
 
-  num_classes: 90 ==> num_classes: 1
-
-  
-
+  label_map_path: "/home/pjh26/data/label_map.pbtxt"
+  input_path: "/home/pjh26/data/test.record"
 
 
 
-
+python3 /home/pjh26/SeniorDesign/create_tfrecord.py \
+        --data_dir=/home/pjh26/data --set=test      \
+        --output_path=/home/pjh26/data/test.record  \
+        --image_directory=/home/pjh26/images        \
+        --label_map_path=/home/pjh26/data/label_map.pbtxt
 
 
 
