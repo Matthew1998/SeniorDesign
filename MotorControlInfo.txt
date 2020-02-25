@@ -27,5 +27,9 @@ G91
     to an absolute location, rather each G0 command is an offset. This will probably be
     the preferred mode for our project.
 
+G90
+    This command enables absolute positioning mode. So a G0 command goes to the position
+    described in the command rather than an offset.
+
 M114
-    This will output the current location.
+    This will output the current location. We haven't gotten it to work, just get error20
