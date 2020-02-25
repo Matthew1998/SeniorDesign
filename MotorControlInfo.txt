@@ -4,9 +4,28 @@ Useful commands:
 
 G0 X## Y## Z##
 
-    The motors will linearly move to the location where the ## represent the locations
+    The motors will linearly move to the absolute location where the ## represent the 
+    location that you're trying to move to
 
 G1 F###
 
     This command controls the feed rate where ### is a number describing the speed
 
+G28
+
+    This command returns to the 'home' position. It interacts with limit switches and
+    we aren't exactly sure/we haven't messed with it much
+
+G92 X0 Y0 Z0
+
+    This says to the controller that the current location of the stepper motors is now
+    reset to X0 Y0 Z0. This does not change the 'home' position however!
+
+G91
+
+    This command enables relative mode. So each movement command is no longer correlated
+    to an absolute location, rather each G0 command is an offset. This will probably be
+    the preferred mode for our project.
+
+M114
+    This will output the current location.
