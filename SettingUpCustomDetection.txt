@@ -40,11 +40,11 @@ SECTION 2 - Beginning with TensorFlow:
    install an image labelling tool called labelImg. Creative right? Run the following line
    of code to clone the repository
 
-    git clone 'https://github.com/tzutalin/labelImg'
+    git clone 'https://github.com/tzutalin/labelImg.git'
 
 4. Next, install some of the requirements by first navigating into the folder created
 
-	cd lblImg
+	cd labelImg
 
 	sudo apt-get install pyqt5-dev-tools
 	sudo pip3 install -r requirements/requirements-linux-python3.txt
@@ -60,30 +60,30 @@ SECTION 2 - Beginning with TensorFlow:
    directory structure.
 
     /home -- This is the directory that you chose to start in. It can be anything, but for the
-    		 sake of this tutorial, we're going to pretend that we cloned into the directory as
-    		 shown. Taking note of this will be important, and any time that it is relevant will
-    		 be taken note of
+             sake of this tutorial, we're going to pretend that we cloned into the directory as
+             shown. Taking note of this will be important, and any time that it is relevant will
+             be taken note of
 
     /home/SeniorDesign -- This is the directory into which you will have cloned our senior design
-    					  repository
+                          repository
 
     /home/models     -- This is the directory into which we just cloned the tensorflow repository
 
     /home/data	     -- This is the directory in which we will store any *.xml and *.record files
 
     /home/data/train -- This is the directory in which we will store the *.xml files which will be
-    					used to train the model
+                        used to train the model
 
     /home/data/test  -- This is the directory in which we will store the *.xml files which will be 
-    					used to test the model while it is training.
+                        used to test the model while it is training.
 
     /home/images     -- This is the directory in which we will store the images that will be used 
-    			        for training and testing our model
+                        for training and testing our model
 
     /home/training   -- This is the directory in which we will store the final trained model
 
     /home/labelImg   -- This is the directory in which the image labelling tool will be stored. This
-    				    tool will be used to create the *.xml files
+                        tool will be used to create the *.xml files
 
 
 SECTION 3 - Creating the *.xml files
