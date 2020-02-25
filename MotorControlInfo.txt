@@ -1,0 +1,12 @@
+This file will contain information on controlling the stepper motors
+
+Useful commands:
+
+G0 X## Y## Z##
+
+    The motors will linearly move to the location where the ## represent the locations
+
+G1 F###
+
+    This command controls the feed rate where ### is a number describing the speed
+
