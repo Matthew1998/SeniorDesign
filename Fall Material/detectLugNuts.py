@@ -30,8 +30,8 @@ class detectLugNuts:
             y = radius*math.sin(math.radians(currentAngle))
             y = (y*scale_y) + center_y
 
-            point = (x,y)
-#             print(point)
+             point = (x,y)
+#           print(point)
             pointList.append(point)
             currentAngle += angle
 

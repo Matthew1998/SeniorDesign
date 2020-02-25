@@ -28,14 +28,14 @@ class interpretImage:
         avg = self.findAverage(l)
         RMS = self.findRMS(l)
         slope = (RMS[1]-avg[1])/(RMS[0]-avg[0])
-    
+
         transformedPoints = []
         for point in l:
             x = point[0] - avg[0]
             y = point[1] - avg[1]
             newP = (x,y)
             transformedPoints.append(newP)
-     
+
         expandedPoints = []
 
         if slope < 1:
@@ -44,7 +44,7 @@ class interpretImage:
                 y = point[1]/slope
                 newP = (x, y)
                 expandedPoints.append(newP)
-            
+
         else:
             for point in transformedPoints:
                 x = point[0]*slope
