@@ -23,7 +23,7 @@ MODEL_PATH = '/home/pi/Desktop/SeniorDesign/TempFiles/'
 IMAGE_PATH = '/home/pi/Desktop/SeniorDesign/TempFiles/images/'
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
-CKPT_PATH = MODEL_PATH + 'frozen_inference_graph.pb'
+CKPT_PATH = '/home/pi/Desktop/SeniorDesign/Models/bolt_rev1_frozen_inference_graph.pb'
 
 # List of the strings that is used to add correct label for each box.
 LABEL_PATH = MODEL_PATH + 'data/label_map.pbtxt'
