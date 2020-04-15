@@ -6,12 +6,13 @@ import pygame.camera
 pygame.init()
 pygame.camera.init()
 
-cam1 = pygame.camera.Camera("/dev/video1", (1000, 1000))
-cam2 = pygame.camera.Camera("/dev/video3", (1000, 1000))
+cam1 = pygame.camera.Camera("/dev/video0", (1280, 720))
+#cam2 = pygame.camera.Camera("/dev/video2", (1280, 720))
 
-window = pygame.display.set_mode((800, 800),pygame.RESIZABLE)
+window = pygame.display.set_mode((1280, 720),pygame.RESIZABLE)
 
-num = 1
+num = 101
+
 
 while True:
 	# Take picture with camera 1
@@ -28,16 +29,16 @@ while True:
 	print(num)
 	time.sleep(0.3)
 
-	# Take picture with camera 2
-	cam2.get_controls()
-	cam2.start()
-	image = cam2.get_image()
-	cam2.stop()
+#	# Take picture with camera 2
+#	cam2.get_controls()
+#	cam2.start()
+#	image = cam2.get_image()
+#	cam2.stop()
 
-	window.blit(image, (0,0))
-	pygame.display.update()
+#	window.blit(image, (0,0))
+#	pygame.display.update()
 
-	pygame.image.save(image, "/home/pi/Desktop/BoltImages/" + str(num) + ".jpg")
-	num += 1
-	print(num)
-	time.sleep(0.3)
+#	pygame.image.save(image, "/home/pi/Desktop/BoltImages/" + str(num) + ".jpg")
+#	num += 1
+#	print(num)
+#	time.sleep(0.3)
