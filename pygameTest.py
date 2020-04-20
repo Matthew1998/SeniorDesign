@@ -11,13 +11,14 @@ cam1 = pygame.camera.Camera("/dev/video0", (1280, 720))
 
 window = pygame.display.set_mode((1280, 720),pygame.RESIZABLE)
 
-num = 101
+num = 1
 
 
 while True:
 	# Take picture with camera 1
 	cam1.get_controls()
 	cam1.start()
+	time.sleep(1)
 	image = cam1.get_image()
 	cam1.stop()
 
@@ -27,7 +28,6 @@ while True:
 	pygame.image.save(image, "/home/pi/Desktop/BoltImages/" + str(num) + ".jpg")
 	num += 1
 	print(num)
-	time.sleep(0.3)
 
 #	# Take picture with camera 2
 #	cam2.get_controls()
