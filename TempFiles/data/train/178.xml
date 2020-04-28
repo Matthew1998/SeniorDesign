@@ -1,13 +1,13 @@
 <annotation>
 	<folder>BoltImages</folder>
 	<filename>178.jpg</filename>
-	<path>/home/pi/Desktop/BoltImages/178.jpg</path>
+	<path>/home/seniordesign/Desktop/SeniorDesign/BoltImages/178.jpg</path>
 	<source>
 		<database>Unknown</database>
 	</source>
 	<size>
-		<width>640</width>
-		<height>480</height>
+		<width>1280</width>
+		<height>720</height>
 		<depth>3</depth>
 	</size>
 	<segmented>0</segmented>
@@ -17,10 +17,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>89</xmin>
-			<ymin>250</ymin>
-			<xmax>126</xmax>
-			<ymax>297</ymax>
+			<xmin>632</xmin>
+			<ymin>313</ymin>
+			<xmax>670</xmax>
+			<ymax>352</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -29,10 +29,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>181</xmin>
-			<ymin>168</ymin>
-			<xmax>223</xmax>
-			<ymax>216</ymax>
+			<xmin>747</xmin>
+			<ymin>320</ymin>
+			<xmax>789</xmax>
+			<ymax>363</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -41,10 +41,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>197</xmin>
-			<ymin>305</ymin>
-			<xmax>245</xmax>
-			<ymax>355</ymax>
+			<xmin>674</xmin>
+			<ymin>417</ymin>
+			<xmax>719</xmax>
+			<ymax>456</ymax>
 		</bndbox>
 	</object>
 </annotation>

@@ -19,11 +19,11 @@ from PIL import Image
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
-MODEL_PATH = '/home/pi/Desktop/SeniorDesign/TempFiles/'
-IMAGE_PATH = '/home/pi/Desktop/SeniorDesign/TempFiles/images/'
+MODEL_PATH = '/home/seniordesign/Desktop/SeniorDesign/TempFiles/'
+IMAGE_PATH = '/home/seniordesign/Desktop/SeniorDesign/TempFiles/images/'
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
-CKPT_PATH = '/home/pi/Desktop/SeniorDesign/Models/bolt_rev2_frozen_inference_graph.pb'
+CKPT_PATH = '/home/seniordesign/Desktop/SeniorDesign/Models/frozen_inference_graph.pb'
 
 # List of the strings that is used to add correct label for each box.
 LABEL_PATH = MODEL_PATH + 'data/label_map.pbtxt'
@@ -31,11 +31,11 @@ LABEL_PATH = MODEL_PATH + 'data/label_map.pbtxt'
 # Number of classes to detect
 NUM_CLASSES = 1
 
-wn = turtle.Screen()
-wn.screensize(800, 600)
-todd = turtle.Turtle()
-todd.shape('turtle')
-todd.penup()
+#wn = turtle.Screen()
+#wn.screensize(800, 600)
+#todd = turtle.Turtle()
+#todd.shape('turtle')
+#todd.penup()
 
 
 # Load a (frozen) Tensorflow model into memory.
@@ -117,7 +117,7 @@ with detection_graph.as_default():
             #ones = iterator%10
             #tens = iterator//10
             # Read frame from camera
-            image_np = cv2.imread('/home/pi/Desktop/SeniorDesign/TempFiles/images/' + str(iterator) + '.jpg')
+            image_np = cv2.imread('/home/seniordesign/Desktop/SeniorDesign/BoltImages/' + str(iterator) + '.jpg')
             # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
             image_np_expanded = np.expand_dims(image_np, axis=0)
             # Extract image tensor
@@ -132,9 +132,8 @@ with detection_graph.as_default():
             num_detections = detection_graph.get_tensor_by_name(
                 'num_detections:0')
             # Actual detection.
-            (boxes, scores, classes, num_detections) = sess.run(
-                [boxes, scores, classes, num_detections],
-                feed_dict={image_tensor: image_np_expanded})
+
+            (boxes, scores, classes, num_detections) = sess.run([boxes, scores, classes, num_detections], feed_dict={image_tensor: image_np_expanded})
 
             # Visualization of the results of a detection.
             vis_util.visualize_boxes_and_labels_on_image_array(
